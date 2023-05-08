@@ -16,7 +16,7 @@ Learning Springboot for creating backend service
 |learn springboot common functions|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-common-functions/)|
 |learn springboot mysql|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-mysql/)|
 |learn springboot postgres|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-postgres/)|
-|learn springboot elastic|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-elastic/)|
+|learn springboot elastic|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-elasticsearch/)|
 |learn springboot mongodb|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-mongodb/)|
 |learn springboot redis|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-redis/)|
 |learn springboot linkrt excel pdf|[link](https://github.com/denitiawan/learning-springboot/tree/main/learn-springboot-linkrt-excel-pdf/)|
