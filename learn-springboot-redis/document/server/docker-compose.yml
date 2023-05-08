@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  redis:
+    container_name: server_redis
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    environment:
+      REDIS_PWD: 'password123'
+    command: /bin/sh -c "redis-server --requirepass $$REDIS_PWD"
+    volumes:
+      - redis:/data
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  redis:
+    driver: local

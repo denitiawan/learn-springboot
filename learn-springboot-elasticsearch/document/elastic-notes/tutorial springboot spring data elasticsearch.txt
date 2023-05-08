@@ -1,0 +1,131 @@
+# create project springboot 
+maven project
+spring version 2.6.10
+java version 8
+add librarry
+		//spring web
+
+	    // spring data elastic search (access+driver)
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		
+		// jakarta json
+		<dependency>
+			<groupId>jakarta.json</groupId>
+			<artifactId>jakarta.json-api</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
+
+#  setup project : craete folder
+
+create folder 
+-elastic
+--config
+--document  
+--controller
+--repo
+--service
+
+
+folder meaning :
+elastic = folder for store elastic stuff
+config = folder for elastic configuration
+document = folder for all elastic documents (tables)
+controller = folder for all rest ealstic controller 
+repo = folder for all elastic query (elasticSearchClient)
+service = folder for all elastic service
+
+#  setup project : create file
+
+create ElasticSearchConfig.java
+create ProductElasticDocument.java
+create ProductElasticController.java
+create ProductElasticRepo.java
+create ProductElasticService.java
+
+# test api
+check elastic index product
+http://localhost:9200/product/_search
+
+test api search all product (elastic)
+http://localhost:8181/v1/elastic/product
+
+
+
+# perbandingan RDBMS vs elastic
+
+DATABASE -> tidak ada database
+TABLE -> Index
+
+
+nama index wajib menambahkan prefix didepannya, supaya nanti di server elastic dapat terlihat bahwa document index milik aplikasi yang mana contoh.
+
+pos-product -> index product milik aplikasi pos
+eco-product -> index product milik aplikasi eco
+
+ 
+ 
+ # cara potong index (sharding index)
+ ketika membuat index automatis elastic akan mebuat 5 bagian dari 1 index tersebut dalam 1 node
+ jika ingin ringan dan lebih baik maka membuat lebih dari 1 node, maka nanti 5 bagian index itu akan di bagikan ke jumlah node yang telah dibuat
+ lihat referensi
+ https://www.youtube.com/watch?v=0KT-0SoNKOI&list=PL-CtdCApEFH_tVTwrxVt0K5LmtVT2u8fh&index=5
+ 
+ 
+# cara duplikasi data index elastic search
+
+
+
+# cara routing dokumen , memnentukan lokasi penyimpanan ke partisi
+https://www.youtube.com/watch?v=rROBNCbNJeU&list=PL-CtdCApEFH_tVTwrxVt0K5LmtVT2u8fh&index=7
+
+
+# distribute document , cara kerja simpan data elastic
+https://www.youtube.com/watch?v=T5X_bAApq40&list=PL-CtdCApEFH_tVTwrxVt0K5LmtVT2u8fh&index=8
+
+
+# elastic data tidak akan berubah, (imutable data)
+https://www.youtube.com/watch?v=w-kv7ur253g&list=PL-CtdCApEFH_tVTwrxVt0K5LmtVT2u8fh&index=9
+
+
+# actifkan sheduler untuk clean up data document yang telah di hapus (cari referensi di internet)
+
+#distributed search (proses pencarian data di elastic search)
+https://www.youtube.com/watch?v=TZk6iVJwG0s&list=PL-CtdCApEFH_tVTwrxVt0K5LmtVT2u8fh&index=10
+
+proses untuk melakukan searching adalah lakukan pada semua partisi yang ada
+kemudian gabungkan hasil dari pencarian
+tahapan search
+1. tahapan query
+2. tahapan fetch
+
+jangan menggunakan mmetode paging dan sorting, karena akan beban ke memory dan cpu
+pakailah metode scroll  di elastic search
+
+# setting JVM elastic recomendasi, pada file jvm.options
+
+untuk belajar
+-Xms1g
+-Xmx1g
+
+untuk server production (lebih dari 50% dari ram yang terpasang) jika terpasang 16 gb maka
+-Xms8g
+-Xmx8g
+
+
+# configurasi elasticsearch.yml
+- cluster.name = nama cluster (jika install lebih dari 1 aplikasi pastikan cluster name nya sama)
+- node.name = nama dari node nya contoh (node-1)
+- path.data = untuk mengatur lokasi folder data  (secara default akan menyimpan di path elasticsearch/data)
+- path.logs = untuk mengatur lokasi folder logging  (secara default akan menyimpan di path elasticsearch/logs)
+- bootsrap.memory_lock = true (jika isinya tru, artinya akan melakukan proses pengmbilan memory sebanyak yang di setting ketika elastic running pertama kali, rekomendasi untuk di production isinya tru)
+- network.host = untuk set host menggunakan ip address komputer, rekomendasi untuk server production menggunakan ip address IPv4 or IPv6
+- http:port = untuk melakukan perubahan port elastic  search default 9200
+- discovery.seed_host = untuk melakukan setting cluster, rekomendasi jika cluster lebih dari satu maka di setting
+
+
+

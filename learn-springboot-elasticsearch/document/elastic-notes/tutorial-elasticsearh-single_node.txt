@@ -1,0 +1,126 @@
+
+
+# setting JVM elastic recomendasi, pada file jvm.options
+
+untuk belajar
+-Xms1g
+-Xmx1g
+
+untuk server production (lebih dari 50% dari ram yang terpasang) jika terpasang 16 gb maka
+-Xms8g
+-Xmx8g
+
+
+
+# configurasi elasticsearch.yml
+- cluster.name = nama cluster (jika install lebih dari 1 aplikasi pastikan cluster name nya sama)
+- node.name = nama dari node nya contoh (node-1)
+- path.data = untuk mengatur lokasi folder data  (secara default akan menyimpan di path elasticsearch/data)
+- path.logs = untuk mengatur lokasi folder logging  (secara default akan menyimpan di path elasticsearch/logs)
+- bootsrap.memory_lock = true (jika isinya tru, artinya akan melakukan proses pengmbilan memory sebanyak yang di setting ketika elastic running pertama kali, rekomendasi untuk di production isinya tru)
+- network.host = untuk set host menggunakan ip address komputer, rekomendasi untuk server production menggunakan ip address IPv4 or IPv6
+- http:port = untuk melakukan perubahan port elastic  search default 9200
+- discovery.seed_host = untuk melakukan setting cluster, rekomendasi jika cluster lebih dari satu maka di setting
+
+
+
+#edit file elasticsearch.yml seperti dibawah ini
+----------------------------------------------------
+
+
+# ======================== Elasticsearch Configuration =========================
+#
+# NOTE: Elasticsearch comes with reasonable defaults for most settings.
+#       Before you set out to tweak and tune the configuration, make sure you
+#       understand what are you trying to accomplish and the consequences.
+#
+# The primary way of configuring a node is via this file. This template lists
+# the most important settings you may want to configure for a production cluster.
+#
+# Please consult the documentation for further information on configuration options:
+# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
+#
+# ---------------------------------- Cluster -----------------------------------
+#
+# Use a descriptive name for your cluster:
+#
+cluster.name: single-node
+#
+# ------------------------------------ Node ------------------------------------
+#
+# Use a descriptive name for the node:
+#
+node.name: node-1
+#
+# Add custom attributes to the node:
+#
+#node.attr.rack: r1
+#
+# ----------------------------------- Paths ------------------------------------
+#
+# Path to directory where to store the data (separate multiple locations by comma):
+#
+#path.data: /path/to/data
+#
+# Path to log files:
+#
+#path.logs: /path/to/logs
+#
+# ----------------------------------- Memory -----------------------------------
+#
+# Lock the memory on startup:
+#
+#bootstrap.memory_lock: true
+#
+# Make sure that the heap size is set to about half the memory available
+# on the system and that the owner of the process is allowed to use this
+# limit.
+#
+# Elasticsearch performs poorly when the system is swapping the memory.
+#
+# ---------------------------------- Network -----------------------------------
+#
+# By default Elasticsearch is only accessible on localhost. Set a different
+# address here to expose this node on the network:
+#
+network.host: 127.0.0.1
+#
+# By default Elasticsearch listens for HTTP traffic on the first free port it
+# finds starting at 9200. Set a specific HTTP port here:
+#
+http.port: 9200
+#
+# For more information, consult the network module documentation.
+#
+# --------------------------------- Discovery ----------------------------------
+#
+# Pass an initial list of hosts to perform discovery when this node is started:
+# The default list of hosts is ["127.0.0.1", "[::1]"]
+#
+#discovery.seed_hosts: ["host1", "host2"]
+#
+# Bootstrap the cluster using an initial set of master-eligible nodes:
+#
+#cluster.initial_master_nodes: ["node-1", "node-2"]
+#
+# For more information, consult the discovery and cluster formation module documentation.
+#
+# --------------------------------- Readiness ----------------------------------
+#
+# Enable an unauthenticated TCP readiness endpoint on localhost
+#
+#readiness.port: 9399
+#
+# ---------------------------------- Various -----------------------------------
+#
+# Allow wildcard deletion of indices:
+#
+#action.destructive_requires_name: false
+
+
+#----------------------- END SECURITY AUTO CONFIGURATION -------------------------
+ingest.geoip.downloader.enabled: false
+xpack.security.enabled: false
+xpack.security.transport.ssl.enabled: false
+xpack.security.http.ssl.enabled: false
+----------------------------------------------------

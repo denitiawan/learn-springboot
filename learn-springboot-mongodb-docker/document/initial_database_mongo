@@ -1,0 +1,66 @@
+// for open mongo db docker container
+docker container exec -it server_mongodb bash
+
+// for login to mongoDB server on docker container
+mongosh -u root -p password -host localhost -port 27017
+
+// for create database 'db_mongo'
+use db_mongo;
+
+// for create collection (table) 'user' and insert new data user ('admin','user')
+db.user.insertMany(
+
+[
+  {
+    _id: 1,
+    username: 'admin',
+    password: 'admin',
+    active: 1,
+    blocked: 0,
+    roles: [
+      {
+        roleCode: 'RL-1',
+        roleName: 'ADMIN',
+        access: [
+          {
+            accessCode: 'AC1',
+            accessName: 'READ'
+          },
+          {
+            accessCode: 'AC2',
+            accessName: 'WRITE'
+          }
+        ]
+      }
+    ],
+    createdBy: 'admin',
+    createdDate: ISODate("2022-12-23T16:46:07.812Z"),
+    updateBy: 'admin',
+    updateDate: ISODate("2022-12-23T16:46:07.812Z")
+  },
+  {
+    _id: 2,
+    username: 'user',
+    password: 'user',
+    active: 1,
+    blocked: 0,
+    roles: [
+      {
+        roleCode: 'RL-2',
+        roleName: 'USER',
+        access: [
+          {
+            accessCode: 'AC1',
+            accessName: 'READ'
+          }
+        ]
+      }
+    ],
+    createdBy: 'admin',
+    createdDate: ISODate("2022-12-23T16:46:07.812Z"),
+    updateBy: 'admin',
+    updateDate: ISODate("2022-12-23T16:46:07.812Z")
+  }
+]
+
+);

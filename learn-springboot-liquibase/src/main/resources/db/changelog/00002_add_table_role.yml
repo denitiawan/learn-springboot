@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: denisetiawan@feb-20th-2022@14:37:29
+      author: denisetiawan
+      objectQuotingStrategy: LEGACY
+      comment: add role table
+      contexts:
+      labels:
+      changes:
+        - sqlFile:
+            dbms: mysql
+            encoding: UTF-8
+            path: 00002_add_tabel_role.sql
+            relativeToChangelogFile: true

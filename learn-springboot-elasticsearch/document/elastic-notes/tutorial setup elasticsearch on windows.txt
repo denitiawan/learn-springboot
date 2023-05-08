@@ -1,0 +1,59 @@
+#Tools and Concepts used in this article:
+
+Spring Boot 2.7.2
+Spring Boot Starter Data Elasticsearch 2.7.1
+Elasticsearch 8.3.2
+Maven
+Java 17
+
+run on docker
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+
+download elastic for window
+https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html
+
+
+extract zip file
+
+
+#Steps to Disable the Security in Elasticsearch
+
+Go inside the Elasticsearch Folder which you have extracted at the last and rename it as Elasticsearch.
+Open the Elasticsearch folder which you just renamed.
+Go inside config folder.
+Right click and open the elasticsearch.yml in Notepad++.
+Comment out all the properties related to security.
+Add the following properties inside the yml file.
+
+download new file elasticsearch.yml from github
+and replace cumputer name on elasticsearch.yml with your computer name
+
+
+#Steps to Run the Elasticsearch
+
+Go inside the Elasticsearch Folder which you have extracted at the last and rename it as Elasticsearch.
+Open the command prompt under the Elasticsearch folder.
+Enter the following command to run the Elasticsearch.
+
+.\bin\elasticsearch.bat
+
+
+# for check the elastic run succesful on window
+http://localhost:9200/
+{
+  "name" : "LAPTOP-CLSE5GF1",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "IUxW-a8KSAiKEhVw0a-1Gg",
+  "version" : {
+    "number" : "8.5.2",
+    "build_flavor" : "default",
+    "build_type" : "zip",
+    "build_hash" : "a846182fa16b4ebfcc89aa3c11a11fd5adf3de04",
+    "build_date" : "2022-11-17T18:56:17.538630285Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.4.1",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
